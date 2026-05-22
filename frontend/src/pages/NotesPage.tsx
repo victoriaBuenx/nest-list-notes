@@ -11,11 +11,15 @@ export default function NotesPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    useEffect(() => {
+    const loadNotes = () => {
         fetchNotes()
         .then(setNotes)
         .catch((err) => setError(err.message))
         .finally(() => setLoading(false));
+    };
+
+    useEffect(() => {
+        loadNotes();
     }, []);
 
     if (loading) return <p>Cargando notas...</p>;
@@ -34,11 +38,12 @@ export default function NotesPage() {
                         fecha={new Date(note.createdAt)}
                         titulo={note.title}
                         contenido={note.content}
+                        onMutate={loadNotes}
                     />
                 ))}
             </div>
             {open && (
-                <NoteForm onClose={() => setOpen(false)} />
+                <NoteForm onClose={() => setOpen(false)} onCreated={loadNotes} />
             )}
             <Button className="fixed bottom-6 right-6 rounded-full w-14 h-14 shadow-lg" variant="primary" size="lg" onClick={() => setOpen(true)}>
                 <Plus />
