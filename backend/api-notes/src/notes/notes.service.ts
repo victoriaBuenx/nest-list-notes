@@ -34,7 +34,7 @@ export class NotesService {
                 id
             }, 
             data: {
-                title: dto.content,
+                title: dto.title,
                 content: dto.content
             }
         });
