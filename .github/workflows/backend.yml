@@ -34,6 +34,14 @@ jobs:
           node-version: ${{ env.Node_Version }}
           cache: "npm"
           cache-dependency-path: backend/api-notes/package-lock.json
+          
+      - name: Verify files
+        working-directory: backend/api-notes
+        run: |
+          pwd
+          ls -la
+          cat package.json
+          cat package-lock.json
 
       - name: Instalar Dependencias
         run: npm ci
