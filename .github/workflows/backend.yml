@@ -16,20 +16,17 @@ env:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./backend/api-notes
 
     steps:
+      - name: Checkout del Repositorio
+        uses: actions/checkout@v4
+      
       - name: Mostrar Variables
         run: |
           echo "App: ${{ env.App_Name }}"
           echo "Servicio: ${{ env.Service_Name }}"
           echo "Node: ${{ env.Node_Version }}"
           echo "Rama: ${{ github.ref_name }}"
-
-      - name: Checkout del Repositorio
-        uses: actions/checkout@v4
 
       - name: Configurar Node.js
         uses: actions/setup-node@v4
