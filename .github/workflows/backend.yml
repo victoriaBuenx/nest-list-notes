@@ -16,6 +16,10 @@ env:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: backend/api-notes
 
     steps:
       - name: Checkout del Repositorio
@@ -36,7 +40,6 @@ jobs:
           cache-dependency-path: backend/api-notes/package-lock.json
 
       - name: Instalar Dependencias
-        working-directory: backend/api-notes
         run: npm ci
 
       - name: Lint
