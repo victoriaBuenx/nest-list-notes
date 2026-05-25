@@ -35,14 +35,8 @@ jobs:
           cache: "npm"
           cache-dependency-path: backend/api-notes/package-lock.json
 
-      - name: Verify files
-        working-directory: backend/api-notes
-        run: |
-          pwd
-          ls -la
-          ls -la backend/api-notes
-          
       - name: Instalar Dependencias
+        working-directory: backend/api-notes
         run: npm ci
 
       - name: Lint
