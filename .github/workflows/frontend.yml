@@ -11,7 +11,7 @@ on:
 env:
   App_Name: "nest-list-notes"
   Service_Name: "frontend"
-  Node_Version: "20"
+  Node_Version: "22"
 
 jobs:
   build:
