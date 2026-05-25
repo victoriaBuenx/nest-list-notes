@@ -34,7 +34,6 @@ export default function UpdateNote({
   content,
   onUpdated,
 }: UpdateNoteProps) {
-
   const [editTitle, setEditTitle] = useState(title);
   const [editContent, setEditContent] = useState(content);
 
@@ -52,12 +51,9 @@ export default function UpdateNote({
         content: editContent,
       });
 
-      if (onUpdated) {
-        onUpdated();
-      }
+      onUpdated?.();
 
       onClose();
-
     } catch (error) {
       console.error(error);
     }
@@ -65,45 +61,44 @@ export default function UpdateNote({
 
   return (
     <Modal isOpen={isOpen} onOpenChange={onClose}>
-        <ModalBackdrop>
-            <ModalContainer>
-                <ModalDialog className="w-full h-[600px]">
-                    <ModalHeader className="text-xl font-bold pb-4 flex flex-col items-start gap-1">
-                        Editar Nota
-                        <p className="text-gray-400 text-xs font-normal">{fecha.toLocaleDateString()}</p>
-                    </ModalHeader>
-                    <ModalBody className="flex flex-col gap-4">
-                    <TextArea
-                        name="title"
-                        value={editTitle}
-                        onChange={(e) => setEditTitle(e.target.value)}
-                        className="text-xl font-bold bg-transparent border-0 focus:ring-0 shadow-none resize-none overflow-y-auto"
-                    />
-                    <TextArea
-                        name="content"
-                        value={editContent}
-                        onChange={(e) => setEditContent(e.target.value)}
-                        className="min-h-[250px] bg-transparent border-0 focus:ring-0 shadow-none resize-none h-full"
-                    />
-                    </ModalBody>
+      <ModalBackdrop>
+        <ModalContainer>
+          <ModalDialog className="w-full h-[600px]">
+            <ModalHeader className="text-xl font-bold pb-4 flex flex-col items-start gap-1">
+              Editar Nota
+              <p className="text-gray-400 text-xs font-normal">
+                {fecha.toLocaleDateString()}
+              </p>
+            </ModalHeader>
 
-                    <ModalFooter className="flex justify-end gap-2 pt-6">
-                        <Button
-                            variant="ghost"
-                            onPress={onClose}
-                        >
-                            Cancelar
-                        </Button>
-                        <Button
-                            variant="primary"
-                            onPress={handleUpdate}
-                        >
-                            Guardar
-                        </Button>
-                    </ModalFooter>
-                </ModalDialog>
-            </ModalContainer>
-        </ModalBackdrop>
+            <ModalBody className="flex flex-col gap-4">
+              <TextArea
+                name="title"
+                value={editTitle}
+                onChange={(e) => setEditTitle(e.target.value)}
+                className="text-xl font-bold bg-transparent border-0 focus:ring-0 shadow-none resize-none overflow-y-auto"
+              />
+
+              <TextArea
+                name="content"
+                value={editContent}
+                onChange={(e) => setEditContent(e.target.value)}
+                className="min-h-[250px] bg-transparent border-0 focus:ring-0 shadow-none resize-none h-full"
+              />
+            </ModalBody>
+
+            <ModalFooter className="flex justify-end gap-2 pt-6">
+              <Button variant="ghost" onPress={onClose}>
+                Cancelar
+              </Button>
+
+              <Button variant="primary" onPress={handleUpdate}>
+                Guardar
+              </Button>
+            </ModalFooter>
+          </ModalDialog>
+        </ModalContainer>
+      </ModalBackdrop>
     </Modal>
   );
 }
