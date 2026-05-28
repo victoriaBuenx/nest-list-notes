@@ -1,0 +1,26 @@
+name: Reusable Build
+
+on:
+  workflow_call:
+
+env:
+  App_Name: "nest-list-notes"
+  Service_Name: "api-notes"
+  Node_Version: "22"
+
+jobs:
+  print-variables:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Mostrar Variables de Entorno
+        run: |
+          echo "App: ${{ env.App_Name }}"
+          echo "Servicio: ${{ env.Service_Name }}"
+          echo "Node: ${{ env.Node_Version }}"
+          echo "Rama: ${{ github.ref_name }}"
+
+      - name: Variables del Repositorio
+        run: |
+          echo "Entorno: ${{ vars.DEPLOY_ENV }}"
+          echo "Región: ${{ vars.APP_REGION }}"
