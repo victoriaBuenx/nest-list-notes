@@ -23,4 +23,4 @@ jobs:
       - name: Variables del Repositorio
         run: |
           echo "Entorno: ${{ vars.DEPLOY_ENV }}"
-          echo "Región: ${{ vars.APP_REGION }}"
+          echo "Descripción: ${{ vars.PROJECT_DESCRIPTION }}"
