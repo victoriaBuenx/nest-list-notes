@@ -2,11 +2,21 @@ name: Reusable Build
 
 on:
   workflow_call:
+    inputs:
+      service_name:
+        description: "Nombre del servicio"
+        required: true
+        type: string
+      node_version:
+        description: "Versión de Node.js a usar"
+        required: false
+        type: string
+        default: "22"
 
 env:
   App_Name: "nest-list-notes"
-  Service_Name: "api-notes"
-  Node_Version: "22"
+  Service_Name: ${{ inputs.service_name }}
+  Node_Version: ${{ inputs.node_version }}
 
 jobs:
   print-variables:

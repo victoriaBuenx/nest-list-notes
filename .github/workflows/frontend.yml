@@ -8,13 +8,14 @@ on:
     branches:
       - master
 
-env:
-  App_Name: "nest-list-notes"
-  Service_Name: "frontend"
-  Node_Version: "22"
-
 jobs:
+  show-variables:
+    uses: ./.github/workflows/reusable-build.yml
+    with:
+      service_name: "frontend"
+
   build:
+    needs: show-variables
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -24,17 +25,10 @@ jobs:
       - name: Checkout del Repositorio
         uses: actions/checkout@v4
 
-      - name: Mostrar Variables
-        run: |
-          echo "App: ${{ env.App_Name }}"
-          echo "Servicio: ${{ env.Service_Name }}"
-          echo "Node: ${{ env.Node_Version }}"
-          echo "Rama: ${{ github.ref_name }}"
-
       - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.Node_Version }}
+          node-version: "22"
           cache: "npm"
           cache-dependency-path: frontend/package-lock.json
 

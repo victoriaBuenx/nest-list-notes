@@ -11,7 +11,10 @@ on:
 
 jobs:
   show-variables:
-    uses: ./.github/workflows/reusable-build.yml 
+    uses: ./.github/workflows/reusable-build.yml
+    with:
+      service_name: "api-notes"
+
 
   build-and-test:
     needs: show-variables
